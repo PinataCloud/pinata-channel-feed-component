@@ -7,8 +7,8 @@ async function fetchData(url: any) {
   let content;
   try {
     const res = await fetch(url);
-    if(!res.ok){
-      return
+    if (!res.ok) {
+      return;
     }
     const contentType = res.headers.get("content-type");
     if (contentType?.includes("text/html")) {
@@ -19,24 +19,30 @@ async function fetchData(url: any) {
       content = "image";
       return { url, content };
     } else {
-      content = "null"
-      return {url, content }
+      content = "null";
+      return { url, content };
     }
   } catch (error) {
-    console.log("problem with url:", url)
+    console.log("problem with url:", url);
     console.log(error);
   }
 }
 export async function Embed({ url }: any) {
   const result: any = await fetchData(url);
-  if(!result){
-    return null
+  if (!result) {
+    return null;
   }
   if (result.content === "website") {
-    const data = result.res
+    const data = result.res;
+    const maxLength = 70;
+    const description = data?.description;
+    const truncatedDescription =
+      description && description.length > maxLength
+        ? `${description.slice(0, maxLength)}...`
+        : description;
     return (
       <div className="flex flex-col rounded-lg border w-full">
-        <Link href={url}>
+        <Link href={url} target="_blank">
           <AspectRatio ratio={16 / 9}>
             <Image
               src={
@@ -51,24 +57,24 @@ export async function Embed({ url }: any) {
           </AspectRatio>
           <div className="flex flex-col px-2 pb-2 gap-1">
             <p className="font-bold">{data?.title}</p>
-            <p className="text-xs">{data?.description}</p>
+            <p className="text-xs">{truncatedDescription}</p>
             <p className="text-xs">{data?.open_graph.url || url}</p>
           </div>
         </Link>
       </div>
     );
-  } else if(result.content === "image") {
+  } else if (result.content === "image") {
     return (
-        <Image 
+      <Image
         unoptimized
         src={url}
         className="rounded-lg w-full"
         alt="Image"
         width={600}
         height={200}
-        />
-    )
+      />
+    );
   } else {
-    return null
+    return null;
   }
 }
