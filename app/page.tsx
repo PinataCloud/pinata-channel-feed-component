@@ -30,7 +30,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-start gap-12 mt-12">
       {feed.data.casts.map((cast: any) => (
         <div
-          className="flex gap-4 w-[500px] flex-row items-start"
+          className="flex gap-4 sm:w-[500px] w-[350px] flex-row items-start"
           key={cast.hash}
         >
           <Avatar>
