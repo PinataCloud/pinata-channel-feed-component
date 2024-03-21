@@ -11,6 +11,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "/pinata Feed",
   description: "A feed of casts from the /pinata channel on Farcaster",
+  icons: "/favicon.svg",
   openGraph: {
     images: [
       "https://docs.mypinata.cloud/ipfs/bafybeibj3a47gxdgkjfrfs6b2n3prsjbvk2lx3twp4lfahgcrfddkxukwu?filename=og.png",
