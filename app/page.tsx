@@ -45,8 +45,8 @@ export default async function Home() {
             </div>
             <p className="pb-2">{cast.content.replace(/https?:\/\/\S+/i, '')}</p>
             {cast.embeds &&
-              cast.embeds.filter((embed: any) => embed.url).length > 0 ? (
-              <Embed url={cast.embeds.find((embed: any) => embed.url).url} />
+              cast.embeds.length > 0 ? (
+              <Embed embedObject={cast.embeds[0]} />
             ) : null}
           </div>
         </div>
