@@ -4,7 +4,7 @@ import { Embed } from "@/components/embed";
 async function cronFeed(channel: any, pageSize: any) {
   try {
     const result = await fetch(
-      `https://api.pinata.cloud/v3/farcaster/casts?channel=${channel}&pageSize=${pageSize}`,
+      `https://api.pinata.cloud/v3/farcaster/casts?channel=${channel}&pageSize=${pageSize}&topLevel=true`,
       {
         next: { revalidate: 60 },
         method: "GET",
