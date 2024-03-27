@@ -25,7 +25,7 @@ async function cronFeed(channel: any, pageSize: any) {
 }
 
 export default async function Home() {
-  const feed = await cronFeed("https://warpcast.com/~/channel/pinata", 50);
+  const feed = await cronFeed("https://warpcast.com/~/channel/pinata", 20);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-12 mt-12">
