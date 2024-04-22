@@ -4,7 +4,7 @@ import { Embed } from "@/components/embed";
 async function cronFeed(channel: any, pageSize: any) {
   try {
     const result = await fetch(
-      `https://api.pinata.cloud/v3/farcaster/casts?channel=${channel}&pageSize=${pageSize}&topLevel=true`,
+      `https://api.pinata.cloud/v3/farcaster/casts?channel=${channel}&pageSize=${pageSize}&topLevel=true&reverse=true`,
       {
         next: { revalidate: 60 },
         method: "GET",
@@ -25,7 +25,7 @@ async function cronFeed(channel: any, pageSize: any) {
 }
 
 export default async function Home() {
-  const feed = await cronFeed("https://warpcast.com/~/channel/pinata", 20);
+  const feed = await cronFeed("https://warpcast.com/~/channel/pinata", 50);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-12 mt-12">
